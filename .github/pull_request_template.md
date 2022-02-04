@@ -1,27 +1,15 @@
-## O que esse Pull Request faz?
+## What does this Pull Request Do?
 
-- Funcionalidade
+- Feature
 
-## Por onde o _reviewer_ deve começar?
+## Where should the reviewer start?
 
-N/A
-
-## Como testar?
-
-N/A
+## How is this tested?
 
 ## Background
 
-N/A
+## Images/Screenshots
 
-## Imagens/Screenshots
+## Related issue(s)
 
-N/A
-
-## _Issues_ relacionados
-
-N/A
-
-## Perguntas/Comentários
-
-N/A
+## Questions/Comments
