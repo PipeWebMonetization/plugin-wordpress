@@ -7,6 +7,10 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
+Edição de teste
+Mais uma edição
+Terceira edição
+
 <br />
 <div align="center">
   <a href="https://github.com/PipeWebMonetization/plugin-wordpress">
