@@ -93,8 +93,23 @@ class Pipe_Web_Monetization {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
+     
+		add_action('admin_menu', array($this, 'create_main_menu'));
 	}
+
+	public function create_main_menu() {
+        add_menu_page( 
+			'Pipe Web Monetization', 
+			'Pipe Web Monetization', 
+			'manage_options', 
+			'pipe-web-monetization-test', 
+			array($this, 'pipe_web_monetization_main'), 
+			plugin_dir_url( dirname(__FILE__) ) . 'img/logo_menu.png');
+    }
+
+    public function pipe_web_monetization_main() {
+    	echo '<div class="wrap"><h2>Hello World</h2></div> ';
+    }
 
 	/**
 	 * Load the required dependencies for this plugin.
