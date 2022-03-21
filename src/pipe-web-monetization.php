@@ -52,6 +52,7 @@ define( 'PIPE_WEB_MONETIZATION_BASE_NAME', plugin_basename( __FILE__ ) );
 function pipe_web_monetization_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pipe-web-monetization-activator.php';
 	Pipe_Web_Monetization_Activator::activate();
+	Pipe_Web_Monetization_Activator::create_payment_pointers_table();
 }
 
 /**
@@ -73,6 +74,7 @@ function pipe_web_monetization_deactivate() {
  */
 function pipe_web_monetization_uninstall() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pipe-web-monetization-uninstall.php';
+	Pipe_Web_Monetization_Uninstall::drop_payment_pointers_table();
 	Pipe_Web_Monetization_Uninstall::uninstall();
 }
 

@@ -102,14 +102,43 @@ class Pipe_Web_Monetization {
 			'Pipe Web Monetization', 
 			'Pipe Web Monetization', 
 			'manage_options', 
-			'pipe-web-monetization-test', 
-			array($this, 'pipe_web_monetization_main'), 
+			'pipe-web-monetization-admin', 
+			array($this, 'pointers_table'), 
 			plugin_dir_url( dirname(__FILE__) ) . 'img/logo_menu.png');
     }
 
-    public function pipe_web_monetization_main() {
-    	echo '<div class="wrap"><h2>Hello World</h2></div> ';
-    }
+	public function pointers_table() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		  }
+		
+		  $default_tab = null;
+		  $tab = isset($_GET['tab']) ? $_GET['tab'] : $default_tab;
+		
+		  ?>
+		  <div class="wrap">
+			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+
+			<nav class="nav-tab-wrapper">
+				<a href="?page=pipe-web-monetization-admin" class="nav-tab <?php if($tab===null):?>nav-tab-active<?php endif; ?>">Default Tab</a>
+				<a href="?page=pipe-web-monetization-admin&tab=pointers" class="nav-tab <?php if($tab==='pointers'):?>nav-tab-active<?php endif; ?>">Payment Pointers</a>
+			</nav>
+		
+			<div class="tab-content">
+				<?php 
+					switch($tab) :
+						case 'pointers':
+							include_once(plugin_dir_path(  dirname(__FILE__)  ) . 'admin/index.php');
+							load_pointers_table();
+							break;
+						default:
+							break;
+					endswitch; 
+				?>
+			</div>
+		  </div>
+		  <?php
+	}
 
 	/**
 	 * Load the required dependencies for this plugin.

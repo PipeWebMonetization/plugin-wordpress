@@ -158,5 +158,21 @@ class Pipe_Web_Monetization_Activator {
 
 	}
 
+	function create_payment_pointers_table() {
+        global $wpdb;
+        $charset_collate = $wpdb->get_charset_collate();
+        $table_name = $wpdb->prefix . 'payment_pointers';
+    
+        $sql = "CREATE TABLE `$table_name` (
+            `pointer` VARCHAR(50) NOT NULL,
+            `probability` FLOAT(3) NOT NULL,
+            PRIMARY KEY(pointer)
+        ) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
+    
+        if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+          require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+          dbDelta($sql);
+        }
+    }
 }
 

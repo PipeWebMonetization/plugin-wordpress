@@ -140,4 +140,15 @@ class Pipe_Web_Monetization_Uninstall {
 
 	}
 
+	function drop_payment_pointers_table() {
+        global $wpdb;
+        $charset_collate = $wpdb->get_charset_collate();
+        $table_name = $wpdb->prefix . 'payment_pointers';
+    
+        $sql = "DROP TABLE IF EXISTS `$table_name`";
+    
+        if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") == $table_name) {
+          $wpdb->query($sql);
+        }
+    }
 }

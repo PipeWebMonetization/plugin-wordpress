@@ -86,7 +86,12 @@ class Pipe_Web_Monetization_Admin {
 	public function enqueue_scripts( $hook_suffix ) {
 
 		wp_enqueue_script( $this->pipe_web_monetization, plugin_dir_url( __FILE__ ) . 'js/pipe-web-monetization-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_localize_script($this->pipe_web_monetization, 'ajax_variables', array( 
+            'ajax_url' => plugin_dir_url( __FILE__ ) . 'db/send-data.php'
+        ));
+		wp_localize_script($this->pipe_web_monetization, 'images_variables', array( 
+            'icon_delete_url' => plugin_dir_url( dirname(__FILE__) ) . 'img/icon_delete.png'
+        ));
 	}
 
 }
