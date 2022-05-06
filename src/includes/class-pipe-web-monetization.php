@@ -117,7 +117,8 @@ class Pipe_Web_Monetization {
 		
 		  ?>
 		  <div class="wrap">
-			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
+			
+		 	<div class="div-main-title"><span><?php echo esc_html( get_admin_page_title() ); ?></span></div>
 
 			<nav class="nav-tab-wrapper">
 				<a href="?page=pipe-web-monetization-admin" class="nav-tab <?php if($tab===null):?>nav-tab-active<?php endif; ?>">Default Tab</a>

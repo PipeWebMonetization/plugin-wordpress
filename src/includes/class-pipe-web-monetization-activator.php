@@ -167,7 +167,7 @@ class Pipe_Web_Monetization_Activator {
             `pointer` VARCHAR(50) NOT NULL,
             `probability` FLOAT(3) NOT NULL,
             PRIMARY KEY(pointer)
-        ) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
+        )";
     
         if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
           require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
