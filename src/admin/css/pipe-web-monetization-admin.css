@@ -1,3 +1,24 @@
+@font-face {
+	font-family: PoppinsBold;  
+	src: local('Poppins-Bold'), 
+		url("../../fonts/Poppins-Bold.ttf") format('truetype');  
+	font-weight: normal;  
+}
+
+@font-face {
+	font-family: PoppinsSemiBold;  
+	src: local('Poppins-SemiBold'), 
+		url("../../fonts/Poppins-SemiBold.ttf") format('truetype');  
+	font-weight: normal;  
+}
+
+@font-face {
+	font-family: PoppinsMedium;  
+	src: local('Poppins-Medium'), 
+		url("../../fonts/Poppins-Medium.ttf") format('truetype');  
+	font-weight: normal;  
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -25,6 +46,66 @@ input[type=number] {
     opacity: 0.5;
 }
 
+.div-main-title {
+    font-family: PoppinsBold;
+    font-size: 2rem;
+    color: #191919;
+    margin: 3.5rem 0rem 3rem 0rem;
+}
+
+.pointers–container {
+    width: 100%;
+    padding: 2rem 0rem 3rem 0rem;
+}
+
+.pointers-title-row {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.pointers-title-row > span {
+    font-family: PoppinsBold;
+    color: #191919;
+    font-size: 1.5rem;
+}
+
+.default-button {
+    background: #FFC121;
+    color: #191919;
+    font-family: PoppinsSemiBold;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 1.5rem 0.25rem 1.5rem;
+}
+
+.pointers-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    margin-top: 2rem;
+}
+
+.pointers-table th {
+    font-family: PoppinsBold;
+    color: #191919;
+    font-size: 1rem;
+    padding: 1rem 0rem 1rem 0rem; 
+    width: 50%;
+}
+
+.pointers-table tr {
+    border-bottom: 1px solid rgba(25, 25, 25, 0.16);
+}
+
+.pointers-table td {
+    font-family: PoppinsSemiBold;
+    padding: 1rem 0rem 1rem 0rem; 
+    width: 50%;
+}
+
 .text-center {
     text-align: center !important;
 }
@@ -50,52 +131,74 @@ input[type=number] {
 }
 
 .pointer-input {
-    margin-top: 1rem;
-    width: 20rem;
+    font-family: PoppinsMedium;
+    width: 50%;
+    padding: 0.2rem 1rem 0.2rem 1rem !important;
+}
+
+.pointer-input:read-only {
+    background-color: rgba(25, 25, 25, 0.04);
+    border: none;
+    border-radius: 4px;
+}
+
+.pointer-form {
+    width: 100%;
+    text-align: right;
+}
+
+.pointer-form-div {
+    width: 100%;
+    text-align: left;
+}
+
+.error-message {
+    font-family: PoppinsMedium;
+    font-size: 0.9rem;
+    color: #CC0909CC;
 }
 
 .probability-input {
+    font-family: PoppinsMedium;
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 1rem;
 }
 
 .probability-input > input {
-    width: 3.5rem;
+    width: 50%;
     margin-right: 0.5rem;
 }
 
 .div-options-buttons {
-    width: 100%;
-    text-align: end;
+    display: none;
 }
 
-.edit-button {
-    margin-top: 1rem !important;
-    text-align: end;
+.plus-button {
+    margin-top: 1rem;
+    background: #191919;
+    color: #FFFFFF;
+    font-family: PoppinsSemiBold;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    padding: 0.25rem 1.5rem 0.25rem 1.5rem;
 }
 
-.pointer-form-div {
+.card-div {
     background-color: #ffffff;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 100%;
     border-radius: 5px;
-}
-
-.pointer-form-div > table {
-    margin: 1rem 2rem 1rem 2rem;
-}
-
-.pointer-form-div > input {
-    margin: 1rem 2rem 1rem 2rem !important;
+    padding: 0.25rem 3rem 3rem 3rem;
+    margin-top: 1rem;
 }
 
 .callback-div {
     display: none;
 }
 
-.button-plus-footer {
+.table-footer {
     text-align: center;
 }

@@ -72,7 +72,7 @@ class Pipe_Web_Monetization_Public {
 	 */
 	public function enqueue_styles() {
 
-		wp_enqueue_style( $this->pipe_web_monetization, plugin_dir_url( __FILE__ ) . 'css/pipe-web-monetization-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->pipe_web_monetization, plugin_dir_url( __FILE__ ) . 'css/pipe-web-monetization.css', array(), $this->version, 'all' );
 
 	}
 
@@ -83,8 +83,12 @@ class Pipe_Web_Monetization_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->pipe_web_monetization, plugin_dir_url( __FILE__ ) . 'js/pipe-web-monetization-public.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->pipe_web_monetization, plugin_dir_url( __FILE__ ) . 'js/pipe-web-monetization.js', array( 'jquery' ), $this->version, false );
 
+		wp_localize_script($this->pipe_web_monetization, 'ajax_variables', array( 
+			'ajax_url' => plugin_dir_url( __FILE__ ) . 'db/get-data.php',
+            'logged_in' => is_user_logged_in()
+        ));
 	}
 
 	/**

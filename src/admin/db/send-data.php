@@ -37,15 +37,14 @@
             $is_duplicated_pointer = true;
         }
     }
-
-    if ($is_form_empty) {
-        echo "#is-form-empty-div";
+    if ($is_form_empty || count($pointers) == 0) {
+        echo "The form is not filled in correctly, please check the data.";
     } else if ($is_duplicated_pointer) {
-        echo "#duplicated-pointer-div";
+        echo "It is not possible to register identical pointers.";
     } else if ($total_probability == 0 || $has_empty_probability) {
-        echo "#probability-empty-div";
+        echo "A pointer cannot have probability 0%.";
     } else if ($total_probability != 100) {
-        echo "#probability-error-div";
+        echo "You are using $total_probability%, you have to use 100%.";
     } else {
 
         if ($is_editing) {
@@ -53,15 +52,15 @@
         }
 
         if (!$truncate_result && $is_editing) {
-            echo "#generic-error-div";
+            echo "Unable to add payment pointer, please try again.";
         } else {
             for ($i = 0; $i < count($pointers) ; $i++) {
                 $result = $wpdb->query("INSERT INTO $table_name(pointer, probability) VALUES ('".$pointers[$i]."', '".$probability[$i]."')");
     
                 if (!$result) {
-                    echo "#generic-error-div";
+                    echo "Unable to add payment pointer, please try again.";
                 } else {
-                    echo "#success-div";
+                    echo "success";
                 }
             }
         }
