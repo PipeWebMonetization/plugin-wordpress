@@ -1,7 +1,6 @@
 jQuery(function ($) {
     var add_counter = $("#add-new-pointer-row").length;
     var edit_counter = $("#edit-new-pointer-row").length;
-    hideCallbackDiv();
 
     $(document).on("click", ".button-delete", function(){  
         var button_id = $(this).attr("id");
@@ -45,41 +44,50 @@ jQuery(function ($) {
     });
 
     $("#create-pointer").click(function () {
-        hideCallbackDiv();
+        $("#add-footer").remove();
         $.ajax({
             url: ajax_variables.ajax_url,
             type: "post",
             data: $("#add-pointer-form").serialize(),
             success: function (data) {
-                if (data.includes("#success-div")) {
+                if (String(data).includes("success")) {
                     $("#cancel-button")[0].click();
+                } else {
+                    $("#add-dynamic-field").append(`
+                        <tfoot id="add-footer">
+                            <tr>
+                                <td colspan="3" class="table-footer">
+                                    <span class="error-message">`+data+`</span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    `);
                 }
-                $(data).css("display", "block");
             }
         });
     });
 
     $("#update-pointer").click(function () {
-        hideCallbackDiv();
+        $("#edit-footer").remove();
         $.ajax({
             url: ajax_variables.ajax_url,
             type: "post",
             data: $("#edit-pointer-form").serialize(),
             success: function (data) {
-                if (data.includes("#success-div")) {
+                if (String(data).includes("success")) {
                     $("#cancel-button")[0].click();
+                } else {
+                    $("#edit-dynamic-field").append(`
+                        <tfoot id="edit-footer">
+                            <tr>
+                                <td colspan="3" class="table-footer">
+                                    <span class="error-message">`+data+`</span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    `);
                 }
-                $(data).css("display", "block");
             }
         });
     });
-
-    function hideCallbackDiv() {
-        $("#success-div").css("display", "none");
-        $("#generic-error-div").css("display", "none");
-        $("#is-form-empty-div").css("display", "none");
-        $("#probability-error-div").css("display", "none");
-        $("#probability-empty-div").css("display", "none");
-        $("#duplicated-pointer-div").css("display", "none");
-    }
 });

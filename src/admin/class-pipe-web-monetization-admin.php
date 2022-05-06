@@ -90,7 +90,7 @@ class Pipe_Web_Monetization_Admin {
             'ajax_url' => plugin_dir_url( __FILE__ ) . 'db/send-data.php'
         ));
 		wp_localize_script($this->pipe_web_monetization, 'images_variables', array( 
-            'icon_delete_url' => plugin_dir_url( dirname(__FILE__) ) . 'img/icon_delete.png'
+            'icon_delete_url' => plugin_dir_url( dirname(__FILE__) ) . 'img/icon_delete.svg'
         ));
 	}
 
