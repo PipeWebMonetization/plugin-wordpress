@@ -17,9 +17,9 @@
         ?>
 
         <div class="wrap">
-            <div class="pointers–container">
+            <div class="tab–container">
                 <div class="pointers-title-row">
-                    <span>Total Revenue by Content</span>
+                    <span>Payment Pointers and Revenue Share</span>
                         <?php 
                             if($pointers_list[0] && !isset($_GET['edit-pointer'])) {
                         ?>
@@ -158,6 +158,36 @@
                 </a>
             </div>
         </div>
+        <?php
+    }
+
+    function load_config_tab() { 
+        $option = get_option('pwm_plugin_id');
+        ?>
+            <div class="wrap">
+                <div class="tab–container settings-tab">                    
+                    <span>Set up your dashboard</span>
+                    <div class="rules-div">
+                        <div class="circle"><span>1<span></div>
+                        <span>Sign in to your <span>dashboard</span>.</span>
+                    </div>
+                    <div class="rules-div">
+                        <div class="circle"><span>2<span></div>
+                        <span>Get your  sync code.</span>
+                    </div>
+                    <div class="rules-div">
+                        <div class="circle"><span>3<span></div>
+                        <span>Paste the  code here:</span>
+                    </div>
+                    <div class="rules-div">
+                        <input type="text" id="plugin_id" placeholder="00000000-0000-0000-0000-000000000000" value="<?php if($option != false) echo $option ?>" />
+                    </div>
+                    <div id="feedback-div" class="rules-div"></div>
+                    <div class="rules-button-div">
+                        <button id="sync-plugin-button" class="default-button">Confirm</button>
+                    </div>
+                </div>    
+            </div>
         <?php
     }
 ?>

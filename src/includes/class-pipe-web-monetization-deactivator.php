@@ -50,20 +50,20 @@ class Pipe_Web_Monetization_Deactivator {
 	 */
 	public static function deactivate() {
 
-		if ( false === self::get_request()
-			|| false === self::validate_request( self::$plugin )
-			|| false === self::check_caps()
-		) {
-			if ( isset( $_REQUEST['plugin'] ) ) {
-				if ( ! check_admin_referer( 'deactivate-plugin_' . self::$request['plugin'] ) ) {
-					exit;
-				}
-			} elseif ( isset( $_REQUEST['checked'] ) ) {
-				if ( ! check_admin_referer( 'bulk-plugins' ) ) {
-					exit;
-				}
-			}
-		}
+		// if ( false === self::get_request()
+		// 	|| false === self::validate_request( self::$plugin )
+		// 	|| false === self::check_caps()
+		// ) {
+		// 	if ( isset( $_REQUEST['plugin'] ) ) {
+		// 		if ( ! check_admin_referer( 'deactivate-plugin_' . self::$request['plugin'] ) ) {
+		// 			exit;
+		// 		}
+		// 	} elseif ( isset( $_REQUEST['checked'] ) ) {
+		// 		if ( ! check_admin_referer( 'bulk-plugins' ) ) {
+		// 			exit;
+		// 		}
+		// 	}
+		// }
 
 		/**
 		 * The plugin is now safely deactivated.

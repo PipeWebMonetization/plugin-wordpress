@@ -90,4 +90,23 @@ jQuery(function ($) {
             }
         });
     });
+
+    $("#sync-plugin-button").click(function () {
+        $.ajax({
+            url: ajax_variables.ajax_settings_url,
+            type: "post",
+            data: { plugin_id: $("#plugin_id").val() },
+            success: function(response) {
+                if (response == 1) {
+                    $("#feedback-span-success").remove()
+                    $("#feedback-span-error").remove()
+                    $("#feedback-div").append('<span id="feedback-span-success" class="feedback-span-success">The code has been saved successfully.</span>');
+                } else {
+                    $("#feedback-span-success").remove()
+                    $("#feedback-span-error").remove()
+                    $("#feedback-div").append('<span id="feedback-span-error" class="feedback-span-error">The code has not been saved. Please try again</span>');
+                }
+            }
+        })
+    })
 });
