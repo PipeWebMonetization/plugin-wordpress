@@ -89,6 +89,9 @@ class Pipe_Web_Monetization_Public {
 			'ajax_url' => plugin_dir_url( __FILE__ ) . 'db/get-data.php',
             'logged_in' => is_user_logged_in()
         ));
+		wp_localize_script($this->pipe_web_monetization, 'plugin_options', array( 
+            'pwm_plugin_id' => get_option('pwm_plugin_id')
+        ));
 	}
 
 	/**

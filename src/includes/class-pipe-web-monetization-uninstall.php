@@ -50,16 +50,16 @@ class Pipe_Web_Monetization_Uninstall {
 	 */
 	public static function uninstall() {
 
-		if ( false === self::get_request()
-			|| false === self::validate_request( self::$plugin )
-			|| false === self::check_caps()
-		) {
-			if ( isset( $_REQUEST['plugin'] ) ) {
-				if ( ! check_ajax_referer( 'updates', '_ajax_nonce' ) ) {
-					exit;
-				}
-			}
-		}
+		// if ( false === self::get_request()
+		// 	|| false === self::validate_request( self::$plugin )
+		// 	|| false === self::check_caps()
+		// ) {
+		// 	if ( isset( $_REQUEST['plugin'] ) ) {
+		// 		if ( ! check_ajax_referer( 'updates', '_ajax_nonce' ) ) {
+		// 			exit;
+		// 		}
+		// 	}
+		// }
 
 		/**
 		 * The plugin is now safely activated.

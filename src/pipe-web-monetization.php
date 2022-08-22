@@ -7,19 +7,18 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://example.com
+ * @link              http://plugin.pipewebmonetization.com/
  * @since             1.0.0
  * @package           Pipe_Web_Monetization
  *
  * @wordpress-plugin
  * Plugin Name:       Pipe Web Monetization
- * Plugin URI:        https://plugin.com/pipe-web-monetization-uri/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin URI:        http://plugin.pipewebmonetization.com/
+ * Description:       Pipe allows you to control who gets paid for your content and connect your payments to an admin dashboard.
  * Version:           1.0.0
- * Author:            Your Name or Your Company Name
+ * Author:            Pipe
  * Requires at least: 4.9
- * Tested up to:      5.8
- * Author URI:        https://example.com/
+ * Tested up to:      6.0.1
  * License:           GPL-2.0+
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       pipe-web-monetization
@@ -51,8 +50,8 @@ define( 'PIPE_WEB_MONETIZATION_BASE_NAME', plugin_basename( __FILE__ ) );
  */
 function pipe_web_monetization_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pipe-web-monetization-activator.php';
-	Pipe_Web_Monetization_Activator::activate();
-	Pipe_Web_Monetization_Activator::create_payment_pointers_table();
+	(new Pipe_Web_Monetization_Activator)->activate();
+	(new Pipe_Web_Monetization_Activator)->create_payment_pointers_table();
 }
 
 /**
@@ -63,7 +62,7 @@ function pipe_web_monetization_activate() {
  */
 function pipe_web_monetization_deactivate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pipe-web-monetization-deactivator.php';
-	Pipe_Web_Monetization_Deactivator::deactivate();
+	(new Pipe_Web_Monetization_Deactivator)->deactivate();
 }
 
 /**
@@ -74,8 +73,8 @@ function pipe_web_monetization_deactivate() {
  */
 function pipe_web_monetization_uninstall() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-pipe-web-monetization-uninstall.php';
-	Pipe_Web_Monetization_Uninstall::drop_payment_pointers_table();
-	Pipe_Web_Monetization_Uninstall::uninstall();
+	(new Pipe_Web_Monetization_Uninstall)->drop_payment_pointers_table();
+	(new Pipe_Web_Monetization_Uninstall)->uninstall();
 }
 
 register_activation_hook( __FILE__, 'pipe_web_monetization_activate' );

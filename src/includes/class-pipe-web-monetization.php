@@ -121,7 +121,7 @@ class Pipe_Web_Monetization {
 		 	<div class="div-main-title"><span><?php echo esc_html( get_admin_page_title() ); ?></span></div>
 
 			<nav class="nav-tab-wrapper">
-				<a href="?page=pipe-web-monetization-admin" class="nav-tab <?php if($tab===null):?>nav-tab-active<?php endif; ?>">Default Tab</a>
+				<a href="?page=pipe-web-monetization-admin" class="nav-tab <?php if($tab===null):?>nav-tab-active<?php endif; ?>">Settings</a>
 				<a href="?page=pipe-web-monetization-admin&tab=pointers" class="nav-tab <?php if($tab==='pointers'):?>nav-tab-active<?php endif; ?>">Payment Pointers</a>
 			</nav>
 		
@@ -133,6 +133,8 @@ class Pipe_Web_Monetization {
 							load_pointers_table();
 							break;
 						default:
+							include_once(plugin_dir_path(  dirname(__FILE__)  ) . 'admin/index.php');
+							load_config_tab();
 							break;
 					endswitch; 
 				?>
