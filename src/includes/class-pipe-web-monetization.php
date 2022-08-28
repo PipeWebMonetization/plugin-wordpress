@@ -218,7 +218,6 @@ class Pipe_Web_Monetization {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -231,10 +230,10 @@ class Pipe_Web_Monetization {
 	private function define_public_hooks() {
 
 		$plugin_public = new Pipe_Web_Monetization_Public( $this->get_pipe_web_monetization(), $this->get_plugin_prefix(), $this->get_version() );
-
+		$this->loader->add_action( 'get_payment_pointers', $plugin_public, 'get_payment_pointers' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+	
 		// Shortcode name must be the same as in shortcode_atts() third parameter.
 		$this->loader->add_shortcode( $this->get_plugin_prefix() . 'shortcode', $plugin_public, 'pipe_web_monetization_shortcode_func' );
 

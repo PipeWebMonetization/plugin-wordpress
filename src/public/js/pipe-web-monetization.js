@@ -59,22 +59,15 @@ class Batcher {
 }
 
 jQuery(function ($) {
-
+  
   function setupMetaTag(pointer) {
     $("head").append(pointer);
   }
 
   if (!ajax_variables.logged_in) {
-    $.ajax({
-      url: ajax_variables.ajax_url,
-      type: 'post',
-      data: { random: Math.random() },
-      success: function (response) {
-        setupMetaTag(response)
-        setupMonetizationListeners()
-        // simulateMonetization()
-      }
-    })
+    const pointer = "<meta name='monetization' content='" + $('#monetization').attr('name') + "' />";
+    setupMetaTag(pointer)
+    setupMonetizationListeners()
   }
 
 

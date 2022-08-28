@@ -73,7 +73,8 @@ class Pipe_Web_Monetization_Public {
 	public function enqueue_styles() {
 
 		wp_enqueue_style( $this->pipe_web_monetization, plugin_dir_url( __FILE__ ) . 'css/pipe-web-monetization.css', array(), $this->version, 'all' );
-
+		do_action( 'get_payment_pointers');
+		
 	}
 
 	/**
@@ -85,8 +86,7 @@ class Pipe_Web_Monetization_Public {
 
 		wp_enqueue_script( $this->pipe_web_monetization, plugin_dir_url( __FILE__ ) . 'js/pipe-web-monetization.js', array( 'jquery' ), $this->version, false );
 
-		wp_localize_script($this->pipe_web_monetization, 'ajax_variables', array( 
-			'ajax_url' => plugin_dir_url( __FILE__ ) . 'db/get-data.php',
+		wp_localize_script($this->pipe_web_monetization, 'ajax_variables', array(
             'logged_in' => is_user_logged_in()
         ));
 		wp_localize_script($this->pipe_web_monetization, 'plugin_options', array( 
@@ -147,4 +147,19 @@ class Pipe_Web_Monetization_Public {
 
 	}
 
+	public function get_payment_pointers() {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'payment_pointers';
+		$pointers_list = $wpdb->get_results("SELECT * FROM $table_name");
+
+		$choice = (float)rand()/(float)getrandmax() * 100;
+	  
+		for ($i = 0; $i < count($pointers_list) ; $i++) {
+			$weight = $pointers_list[$i]->probability;
+			if (($choice -= $weight) <= 0) {
+				echo "<div id='monetization' name='".$pointers_list[$i]->pointer."'></div>";
+				return;
+			}
+		}
+	}
 }

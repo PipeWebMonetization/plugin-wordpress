@@ -7,6 +7,10 @@ jQuery(function ($) {
         $("#row" + button_id + '').remove();
     }); 
 
+    if($("#success-message").attr("id") == "success-message"){
+        $("#cancel-button")[0].click();
+    }
+      
     $("#add-new-pointer-row").click(function () {
         add_counter++;
         $("#add-dynamic-field").append(
@@ -42,71 +46,4 @@ jQuery(function ($) {
                 </td>
             </tr>`);
     });
-
-    $("#create-pointer").click(function () {
-        $("#add-footer").remove();
-        $.ajax({
-            url: ajax_variables.ajax_url,
-            type: "post",
-            data: $("#add-pointer-form").serialize(),
-            success: function (data) {
-                if (String(data).includes("success")) {
-                    $("#cancel-button")[0].click();
-                } else {
-                    $("#add-dynamic-field").append(`
-                        <tfoot id="add-footer">
-                            <tr>
-                                <td colspan="3" class="table-footer">
-                                    <span class="error-message">`+data+`</span>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    `);
-                }
-            }
-        });
-    });
-
-    $("#update-pointer").click(function () {
-        $("#edit-footer").remove();
-        $.ajax({
-            url: ajax_variables.ajax_url,
-            type: "post",
-            data: $("#edit-pointer-form").serialize(),
-            success: function (data) {
-                if (String(data).includes("success")) {
-                    $("#cancel-button")[0].click();
-                } else {
-                    $("#edit-dynamic-field").append(`
-                        <tfoot id="edit-footer">
-                            <tr>
-                                <td colspan="3" class="table-footer">
-                                    <span class="error-message">`+data+`</span>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    `);
-                }
-            }
-        });
-    });
-
-    $("#sync-plugin-button").click(function () {
-        $.ajax({
-            url: ajax_variables.ajax_settings_url,
-            type: "post",
-            data: { plugin_id: $("#plugin_id").val() },
-            success: function(response) {
-                if (response == 1) {
-                    $("#feedback-span-success").remove()
-                    $("#feedback-span-error").remove()
-                    $("#feedback-div").append('<span id="feedback-span-success" class="feedback-span-success">The code has been saved successfully.</span>');
-                } else {
-                    $("#feedback-span-success").remove()
-                    $("#feedback-span-error").remove()
-                    $("#feedback-div").append('<span id="feedback-span-error" class="feedback-span-error">The code has not been saved. Please try again</span>');
-                }
-            }
-        })
-    })
 });

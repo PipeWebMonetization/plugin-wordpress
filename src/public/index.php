@@ -7,3 +7,5 @@
  * @package     Pipe_Web_Monetization
  * @subpackage  Pipe_Web_Monetization/public
  */
+
+?>
