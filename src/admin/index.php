@@ -233,7 +233,7 @@
                     <span>Set up your dashboard</span>
                     <div class="rules-div">
                         <div class="circle"><span>1<span></div>
-                        <span>Sign in to your <span>dashboard</span>.</span>
+                        <span>Sign in to your <a target="_blank" href="https://dashboard.pipewebmonetization.com/">dashboard</a>.</span>
                     </div>
                     <div class="rules-div">
                         <div class="circle"><span>2<span></div>
