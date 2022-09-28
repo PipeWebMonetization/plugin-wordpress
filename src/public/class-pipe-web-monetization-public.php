@@ -157,7 +157,7 @@ class Pipe_Web_Monetization_Public {
 		for ($i = 0; $i < count($pointers_list) ; $i++) {
 			$weight = $pointers_list[$i]->probability;
 			if (($choice -= $weight) <= 0) {
-				echo "<div id='monetization' name='".$pointers_list[$i]->pointer."'></div>";
+				echo "<div id='monetization' name='" . esc_attr($pointers_list[$i]->pointer) . "'></div>";
 				return;
 			}
 		}

@@ -231,7 +231,8 @@ input[type=number] {
     margin-left: 1rem;
 }
 
-.rules-div > span > span {
+.rules-div > span > a {
+    text-decoration: none;
     color: #B07F00;
 }
 
