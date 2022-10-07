@@ -142,6 +142,12 @@ input[type=number] {
     padding: 0.2rem 1rem 0.2rem 1rem !important;
 }
 
+.pointer-input:focus {
+    outline: none !important;
+    border:1px solid #FFC121 !important;;
+    box-shadow: 0 0 5px #FFC121 !important;;
+}
+
 .pointer-input:read-only {
     background-color: rgba(25, 25, 25, 0.04);
     border: none;
@@ -174,6 +180,13 @@ input[type=number] {
 .probability-input > input {
     width: 50%;
     margin-right: 0.5rem;
+    padding: 0.2rem 1rem 0.2rem 1rem !important;
+}
+
+.probability-input > input:focus {
+    outline: none !important;
+    border:1px solid #FFC121;
+    box-shadow: 0 0 5px #FFC121;
 }
 
 .div-options-buttons {
@@ -242,6 +255,12 @@ input[type=number] {
     margin-top: -2rem;
     margin-left: 3rem;
     padding: 0.2rem 1rem 0.2rem 1rem !important;
+}
+
+.rules-div > input:focus {
+    outline: none !important;
+    border:1px solid #FFC121;
+    box-shadow: 0 0 5px #FFC121;
 }
 
 .feedback-span-success {

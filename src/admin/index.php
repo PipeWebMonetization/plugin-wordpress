@@ -288,25 +288,34 @@
 			$is_editing = true;
 		}
 
-		for ($i = 0; $i < count($pointers) ; $i++) {
-			if (trim($pointers[$i] == '') || trim($probability[$i] == '')) {
-				$is_form_empty = true;
-			}
-	
-			if (trim($probability[$i]) == 0) {
-				$has_empty_probability = true;
-			}
-	
-			$total_probability = $total_probability + $probability[$i];
-	
-			$indexes = array_keys($pointers, $pointers[$i]);
-			if(count($indexes) > 1) { 
-				$is_duplicated_pointer = true;
-			}
+        $pointers_size = count($pointers);
+
+        for ($i = ($pointers_size-1); $i >= 0; $i--) {
+            if (trim($pointers[$i]) == '' && trim($probability[$i]) == '') {
+                array_splice($pointers, $i, 1);
+            } else {
+                if ($pointers_size == 1 && trim($probability[$i]) == '') {
+                    $probability[$i] = 100;
+                } else if (trim($probability[$i]) == '') {
+            	    $has_empty_probability = true;        
+                }
+                $total_probability = $total_probability + $probability[$i];
+
+                $indexes = array_keys($pointers, $pointers[$i]);
+                if(count($indexes) > 1) { 
+                    $is_duplicated_pointer = true;
+                }
+            }
 		}
-		if ($is_form_empty || count($pointers) == 0) {
-			echo "<span class='error-message'>The form is not filled in correctly, please check the data.";
-		} else if ($is_duplicated_pointer) {
+
+        if ($pointers_size == 0) {
+			$truncate_result = $wpdb->query("TRUNCATE TABLE $table_name");
+            if ($truncate_result) {
+                echo "<div id='success-message'>Your payment pointer was deleted.</div>";
+            } else {
+                echo "<span class='error-message'>Unable to delete payment pointers, please try again.";
+            }
+        } else if ($is_duplicated_pointer) {
 			echo "<span class='error-message'>It is not possible to register identical pointers.";
 		} else if ($total_probability == 0 || $has_empty_probability) {
 			echo "<span class='error-message'>A pointer cannot have probability 0%.";

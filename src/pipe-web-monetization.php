@@ -15,7 +15,7 @@
  * Plugin Name:       Pipe Web Monetization
  * Plugin URI:        http://plugin.pipewebmonetization.com/
  * Description:       Pipe allows you to control who gets paid for your content and connect your payments to an admin dashboard.
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            Pipe
  * Requires at least: 4.9
  * Tested up to:      6.0.1
