@@ -4,7 +4,7 @@ Donate link: https://donate.tld/
 Tags: monetization, payment, pipe, web
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.0.0
+Stable tag: 1.0.2
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -19,7 +19,7 @@ Our plugin is connected with a dashboard that will display the amounts received 
 
 == Installation ==
 
-1. Set your Plugin ID in dashboard ()
+1. Set your Plugin ID in dashboard (https://dashboard.pipewebmonetization.com/)
 2. Add your Plugin ID in plugin settings tab
 3. Add one or more payment pointers
 
@@ -36,10 +36,16 @@ The Pipe Web Monetization aims to make it easy for worpress website owners to ac
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 * First release of Pipe Web Monetization Plugin
 
+= 1.0.1 =
+* Fix monetization tag
+
+= 1.0.2 =
+* Fix small issues
+
 == Upgrade Notice ==
-* First release of Pipe Web Monetization Plugin
+* Fix small issues
 
 == Arbitrary section ==
