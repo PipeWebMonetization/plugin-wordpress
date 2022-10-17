@@ -15,7 +15,7 @@
  * Plugin Name:       Pipe Web Monetization
  * Plugin URI:        http://plugin.pipewebmonetization.com/
  * Description:       Pipe allows you to control who gets paid for your content and connect your payments to an admin dashboard.
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author:            Pipe
  * Requires at least: 4.9
  * Tested up to:      6.0.1
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'PIPE_WEB_MONETIZATION_VERSION', '1.0.0' );
+define( 'PIPE_WEB_MONETIZATION_VERSION', '1.0.3' );
 
 /**
  * Define the Plugin basename
