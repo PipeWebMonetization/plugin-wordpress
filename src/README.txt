@@ -4,7 +4,7 @@ Donate link: https://donate.tld/
 Tags: monetization, payment, pipe, web
 Requires at least: 4.9
 Tested up to: 6.0.2
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 Requires PHP: 7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -45,7 +45,10 @@ The Pipe Web Monetization aims to make it easy for worpress website owners to ac
 = 1.0.2 =
 * Fix small issues
 
+= 1.0.3 =
+* Send tips data to dashboard
+
 == Upgrade Notice ==
-* Fix small issues
+* Send tips data to dashboard
 
 == Arbitrary section ==
