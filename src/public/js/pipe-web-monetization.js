@@ -3,6 +3,11 @@ class Batcher {
   timeout = 1000;
   pluginId = "";
   paymentPointer = "";
+  verifyAddress = "";
+
+  setVerifyAddress(value) {
+    this.verifyAddress = value;
+  }
 
   setPluginId(value) {
     this.pluginId = value;
@@ -60,11 +65,67 @@ class Batcher {
   }
 }
 
+class VerifyAddress {
+  verifyAddress = "";
+
+  setVerifyAddress(value) {
+    this.verifyAddress = value;
+  }
+  async verifyAddressRequest() {
+    return true;
+    // const data = {
+    //   sender_wallet_address: verifyAddress,
+    //   receiver_wallet_address: "",
+    //   expected_amount: "",
+    // };
+
+    // await fetch(
+    //   `https://94w4fmrdq3.execute-api.us-east-1.amazonaws.com/Dev/api/openpayments/validate-payment`,
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify(data),
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // ).then((response) => {
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not ok");
+    //   }
+    //   return response.json();
+    // });
+  }
+}
+
 jQuery(function ($) {
   console.log(plugin_infos.version);
 
   function setupMetaTag(pointer) {
     $("head").append(pointer);
+  }
+
+  function setupPremiumConsumer() {
+    $("body").toggleClass("blur");
+    $("body").append(
+      `<div class="main-container">
+        <div class="main-container-child">
+          <label class="paywall-title">Sorry :/</label>
+          <label>This content is web monetized,</label>
+          <label>set up a wallet to see this content!</label>
+            <img src="` +
+        images_variables.icon_eye_url +
+        `" />
+        <br />
+        <label>Insert your wallet address bellow.</label>
+        <br />
+        <input class="pointer-input" type="text" id="verify_address" name="verify_address" placeholder="https://wallet.example.com/gabriel">
+        <button type="button" id="verify_address_button" name="add-remove-row" class="default-button">
+            Pay $5
+        </button>
+        <br />
+        <label>Access <a href="https://www.pipewebmonetization.com/" target="_blank">Pipe Web Monetization</a> for more information.</label>
+      </div>`
+    );
   }
 
   function setupPaywall() {
@@ -88,64 +149,66 @@ jQuery(function ($) {
     );
   }
 
-  if (!ajax_variables.logged_in) {
-    const pointer =
-      "<meta name='monetization' content='" +
-      $("#monetization").attr("name") +
-      "' />";
-    setupMetaTag(pointer);
-    setupMonetizationListeners();
+  function removePaywall() {
+    $("body").removeClass("blur");
+    $(".main-container").remove();
   }
+
+  $(document).on("click", "#verify_address_button", function () {
+    console.log($("#verify_address").val());
+
+    const verifyAddress = new VerifyAddress();
+
+    verifyAddress.setVerifyAddress($("#verify_address").val());
+    if (verifyAddress.verifyAddressRequest()) {
+      removePaywall();
+    }
+  });
+
+  // if (!ajax_variables.logged_in) {
+  setupMonetizationListeners();
+  // }
 
   async function setupMonetizationListeners() {
     const batcher = new Batcher();
 
     batcher.setPluginId(plugin_options.pwm_plugin_id);
     batcher.setPaymentPointer(
-      document
-        .querySelector('meta[name="monetization"]')
-        .getAttribute("content")
+      document.querySelector('link[rel="monetization"]').getAttribute("href")
     );
 
     if (post_infos.post_categories) {
       post_infos.post_categories.forEach((category) => {
-        if (
-          category.slug == "pipe-category" &&
-          document.monetization == undefined &&
-          post_infos.is_home != "1"
-        ) {
+        if (category.slug == "pipe-category" && post_infos.is_home != "1") {
           setupPaywall();
         }
       });
     }
 
-    if (!document.monetization) {
-      return;
+    if (post_infos.post_categories) {
+      post_infos.post_categories.forEach((category) => {
+        if (
+          category.slug == "premium-consumer-category" &&
+          post_infos.is_home != "1"
+        ) {
+          setupPremiumConsumer();
+        }
+      });
     }
 
-    document.monetization.addEventListener("monetizationprogress", (event) => {
+    // if (!document.monetization) {
+    //   return;
+    // }
+
+    const link = document.querySelector('link[rel="monetization"]');
+    link.addEventListener("monetization", (event) => {
+      removePaywall();
+      console.log(event);
       batcher.add({
         date: new Date().getTime(),
-        value: Number(
-          (
-            Number(event.detail.amount) *
-            10 ** (-1 * event.detail.assetScale)
-          ).toFixed(event.detail.assetScale)
-        ),
+        value: Number(event.amountSent.amount),
         postId: post_infos.is_home != "1" ? post_infos.post_id : "",
         postTitle: post_infos.is_home != "1" ? post_infos.post_title : "",
-      });
-    });
-
-    document.monetization.addEventListener("tip", (event) => {
-      batcher.add({
-        date: new Date().getTime(),
-        value: Number(
-          (
-            Number(event.detail.amount) *
-            10 ** (-1 * event.detail.assetScale)
-          ).toFixed(event.detail.assetScale)
-        ),
       });
     });
 

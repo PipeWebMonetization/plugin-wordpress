@@ -52,8 +52,13 @@ The Pipe Web Monetization aims to make it easy for worpress website owners to ac
 * Revenue per content
 * Exclusive content to web monetized users
 
+= 1.0.5 =
+* Fixes
+
+= 1.0.6 =
+* Premium content
+
 == Upgrade Notice ==
-* Revenue per content
-* Exclusive content to web monetized users
+* Premium content
 
 == Arbitrary section ==

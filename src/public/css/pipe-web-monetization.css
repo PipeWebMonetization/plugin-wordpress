@@ -5,7 +5,31 @@
  *
  */
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  opacity: 0.5;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  opacity: 0.5;
+}
+
+.pointer-input {
+  font-family: PoppinsMedium;
+  width: 30%;
+  height: 2rem;
+  padding: 0.2rem 1rem 0.2rem 1rem !important;
+}
+
 .default-button {
+  width: 10rem;
   height: 3rem;
   background: #ffc121;
   color: #191919;
@@ -46,7 +70,7 @@
 
 .main-container-child {
   width: 40%;
-  height: 50vh;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -175,7 +175,7 @@ class Pipe_Web_Monetization_Public {
 		for ($i = 0; $i < count($pointers_list) ; $i++) {
 			$weight = $pointers_list[$i]->probability;
 			if (($choice -= $weight) <= 0) {
-				echo "<meta name='monetization' content='" . esc_attr($pointers_list[$i]->pointer) . "'></meta>";
+				echo "<link rel='monetization' href='" . esc_attr($pointers_list[$i]->pointer) . "'>";
 				return;
 			}
 		}

@@ -76,7 +76,7 @@
                                     <table class="pointers-table" id="add-dynamic-field">  
                                         <thead>
                                             <tr>
-                                                <th><b>Payment Pointer</b></th>
+                                                <th><b>Payment Pointers</b></th>
                                                 <th><b>Share</b></th>
                                             </tr>
                                         </thead>

@@ -15,7 +15,7 @@
  * Plugin Name:       Pipe Web Monetization
  * Plugin URI:        http://plugin.pipewebmonetization.com/
  * Description:       Pipe allows you to control who gets paid for your content and connect your payments to an admin dashboard.
- * Version:           1.0.4
+ * Version:           1.0.6
  * Author:            Pipe
  * Requires at least: 4.9
  * Tested up to:      6.0.1
@@ -56,10 +56,20 @@ function pipe_web_monetization_activate() {
 	$cat_name = 'Only Web Monetized Users';
 	$cat_slug = 'pipe-category';
 
+	$premium_name = 'Premium Consumer';
+	$premium_slug = 'premium-consumer-category';
+
 	if(!term_exists($cat_name, 'category')){
 		$cat_id = wp_create_category($cat_name, 0);
 		wp_update_term($cat_id, 'category', array(
 			'slug' => $cat_slug
+		));
+	}
+
+	if(!term_exists($premium_name, 'category')){
+		$premium_id = wp_create_category($premium_name, 0);
+		wp_update_term($premium_id, 'category', array(
+			'slug' => $premium_slug
 		));
 	}
 }
