@@ -1,6 +1,6 @@
 class Batcher {
   transactionsList = [];
-  timeout = 2000;
+  timeout = 1000;
   pluginId = "";
   paymentPointer = "";
 
@@ -61,8 +61,31 @@ class Batcher {
 }
 
 jQuery(function ($) {
+  console.log(plugin_infos.version);
+
   function setupMetaTag(pointer) {
     $("head").append(pointer);
+  }
+
+  function setupPaywall() {
+    $("body").toggleClass("blur");
+    $("body").append(
+      `<div class="main-container">
+        <div class="main-container-child">
+          <label class="paywall-title">Sorry :/</label>
+          <label>This content is web monetized,</label>
+          <label>set up a wallet to see this content!</label>
+            <img src="` +
+        images_variables.icon_eye_url +
+        `" />
+          <label>Access <a href="https://www.pipewebmonetization.com/" target="_blank">Pipe Web Monetization</a> for more information.</label>
+          <div class="default-button">
+          <a class="button-link" href="https://www.pipewebmonetization.com/" target="_blank" class="default-button">
+              Learn More
+          </a>
+        </div>
+      </div>`
+    );
   }
 
   if (!ajax_variables.logged_in) {
@@ -77,16 +100,28 @@ jQuery(function ($) {
   async function setupMonetizationListeners() {
     const batcher = new Batcher();
 
-    if (!document.monetization) {
-      return;
-    }
-
     batcher.setPluginId(plugin_options.pwm_plugin_id);
     batcher.setPaymentPointer(
       document
         .querySelector('meta[name="monetization"]')
         .getAttribute("content")
     );
+
+    if (post_infos.post_categories) {
+      post_infos.post_categories.forEach((category) => {
+        if (
+          category.slug == "pipe-category" &&
+          document.monetization == undefined &&
+          post_infos.is_home != "1"
+        ) {
+          setupPaywall();
+        }
+      });
+    }
+
+    if (!document.monetization) {
+      return;
+    }
 
     document.monetization.addEventListener("monetizationprogress", (event) => {
       batcher.add({
@@ -97,6 +132,8 @@ jQuery(function ($) {
             10 ** (-1 * event.detail.assetScale)
           ).toFixed(event.detail.assetScale)
         ),
+        postId: post_infos.is_home != "1" ? post_infos.post_id : "",
+        postTitle: post_infos.is_home != "1" ? post_infos.post_title : "",
       });
     });
 

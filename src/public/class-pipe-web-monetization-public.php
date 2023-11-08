@@ -92,6 +92,24 @@ class Pipe_Web_Monetization_Public {
 		wp_localize_script($this->pipe_web_monetization, 'plugin_options', array( 
             'pwm_plugin_id' => get_option('pwm_plugin_id')
         ));
+		wp_localize_script($this->pipe_web_monetization, 'images_variables', array( 
+            'icon_eye_url' => plugin_dir_url( dirname(__FILE__) ) . 'img/icon_eye.svg'
+        ));
+
+		wp_localize_script($this->pipe_web_monetization, 'plugin_infos', array( 
+            'version' => $this->version
+        ));
+
+		global $wp_query;
+        $post_id = $wp_query->post->ID;
+
+		$categories = get_the_category( $post_id );
+		wp_localize_script($this->pipe_web_monetization, 'post_infos', array( 
+            'post_id' => $post_id,
+            'post_title' => get_the_title($post_id),
+			'post_categories' => $categories,
+			'is_home' => is_home()
+        ));
 	}
 
 	/**
@@ -162,4 +180,5 @@ class Pipe_Web_Monetization_Public {
 			}
 		}
 	}
+
 }
